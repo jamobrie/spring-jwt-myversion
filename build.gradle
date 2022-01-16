@@ -13,6 +13,9 @@ repositories {
 }
 
 dependencies {
+	//datatypeconverter has been deprecated. So immediate below import needed to resolve missing dependency (java 8 only it seems)
+	implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
+	implementation 'commons-codec:commons-codec:1.15'
 	implementation 'io.jsonwebtoken:jjwt:0.7.0'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'

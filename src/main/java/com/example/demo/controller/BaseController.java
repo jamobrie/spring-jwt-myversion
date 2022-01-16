@@ -1,17 +1,22 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.JwtResponse;
+import com.example.demo.service.SecretService;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 public class BaseController {
 
+    @Autowired
+    SecretService secretService;
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({ SignatureException.class, MalformedJwtException.class, JwtException.class })
+    @ExceptionHandler({SignatureException.class, MalformedJwtException.class, JwtException.class})
     public JwtResponse exception(Exception e) {
         JwtResponse response = new JwtResponse();
         response.setStatus(JwtResponse.Status.ERROR);
